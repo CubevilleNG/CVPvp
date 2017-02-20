@@ -1,0 +1,26 @@
+name: CVPvp
+main: org.cubeville.cvpvp.CVPvp
+author: KipperOrigin
+version: 0.1
+
+depend: [CVTools,CVSimpleNbt]
+
+commands:
+  cvpvp:
+    description: PvP Base Command
+    permission: cvpvp.admin
+
+permissions:
+  
+  cvpvp.admin:
+    description: Gives player access to every PvP command
+    default: op
+  cvpvp.loadout.*:
+    description: Unlimited use of loadouts
+    default: op
+  cvpvp.loadout.commands:
+    description: Permission for loadout commands
+    default: op
+  cvpvp.loadout.standard:
+    description: Permission for loadout usage
+    default: op
