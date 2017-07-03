@@ -67,7 +67,7 @@ public class LoadoutContainer implements ConfigurationSerializable {
         loadoutName = title;
         player.openInventory(inv);
     }
-	
+
     public LoadoutContainer(String title, Map<String, Inventory> inventories) {
         loadoutName = title.toLowerCase();
         this.inventories = inventories;

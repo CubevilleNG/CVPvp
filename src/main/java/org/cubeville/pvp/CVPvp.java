@@ -1,10 +1,13 @@
 package org.cubeville.pvp;
 
-
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.cubeville.commons.commands.CommandParser;
+
 import org.cubeville.pvp.commands.*;
 import org.cubeville.pvp.loadout.LoadoutContainer;
 import org.cubeville.pvp.loadout.LoadoutManager;
@@ -43,13 +46,28 @@ public class CVPvp extends JavaPlugin {
         commandParser.addCommand(new LoadoutTagClear());
         commandParser.addCommand(new LoadoutTagRemove());
         commandParser.addCommand(new LoadoutUnblacklistPlayer());
+
+        PluginManager pm = getServer().getPluginManager();
+        pm.registerEvents(new EventListener(), this);
     }
 
     public void onDisable() {
-        instance = null;
+       instance = null;
     }
 
     public LoadoutManager getLoadoutManager() {
         return loadoutManager;
+    }
+
+    public void saveLoadoutManager() {
+        getConfig().set("LoadoutManager", loadoutManager);
+        saveConfig();
+    }
+    
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equals("cvpvp")) {
+            return commandParser.execute(sender, args);
+        }
+        return false;
     }
 }
